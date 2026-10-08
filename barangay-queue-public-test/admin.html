@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrator Dashboard | Barangay San Isidro</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main class="dashboard-shell">
+    <aside class="sidebar" aria-label="Administrator navigation">
+      <a class="brand" href="index.html" aria-label="Return to resident kiosk">
+        <span class="brand__seal" aria-hidden="true">BSI</span>
+        <span class="brand__name">Barangay<br>San Isidro</span>
+      </a>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item nav-item--active" type="button" data-view="dashboard">
+          <span aria-hidden="true">⌂</span> Dashboard
+        </button>
+        <button class="nav-item" type="button" data-view="queue-management">
+          <span aria-hidden="true">▤</span> Queue Management
+        </button>
+        <button class="nav-item" type="button" data-view="transactions">
+          <span aria-hidden="true">▧</span> Transactions
+        </button>
+        <button class="nav-item" type="button" data-view="reports" data-admin-only>
+          <span aria-hidden="true">▥</span> Reports
+        </button>
+        <button class="nav-item" type="button" data-view="settings" data-admin-only>
+          <span aria-hidden="true">⚙</span> Settings
+        </button>
+      </nav>
+    </aside>
+
+    <section class="dashboard-content">
+      <header class="topbar">
+        <div>
+          <p class="topbar__eyebrow">Staff workspace</p>
+          <h1>Administrator Dashboard</h1>
+        </div>
+        <div class="topbar__right">
+          <p class="topbar__time" id="current-date">October 1, 2026</p>
+          <div class="profile-button" aria-label="Signed-in staff member">
+            <span class="profile-button__icon" aria-hidden="true">●</span>
+            <span id="profile-name">Loading…</span>
+            <span class="profile-role" id="profile-role">—</span>
+          </div>
+          <button class="logout-button" id="logout-button" type="button">Sign Out</button>
+        </div>
+      </header>
+
+      <div class="dashboard-main">
+        <section class="page-view" data-view="dashboard">
+        <section class="summary-grid" aria-label="Queue summary">
+          <article class="summary-card summary-card--blue">
+            <div>
+              <p>Total Transactions<br>Today</p>
+              <strong id="total-transactions">0</strong>
+            </div>
+            <span class="summary-card__icon" aria-hidden="true">▣</span>
+          </article>
+          <article class="summary-card summary-card--green">
+            <div>
+              <p>Currently Serving</p>
+              <strong id="currently-serving">—</strong>
+            </div>
+            <span class="summary-card__icon" aria-hidden="true">♟</span>
+          </article>
+          <article class="summary-card summary-card--purple">
+            <div>
+              <p>In Queue</p>
+              <strong id="in-queue">0</strong>
+            </div>
+            <span class="summary-card__icon" aria-hidden="true">♟♟</span>
+          </article>
+        </section>
+
+        <div class="dashboard-grid">
+          <section class="panel queue-panel" aria-labelledby="queue-list-title">
+            <div class="panel__heading">
+              <div>
+                <p class="panel__eyebrow">Live overview</p>
+                <h2 id="queue-list-title">Queue List</h2>
+              </div>
+              <span class="live-indicator"><span></span> Live</span>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Time In</th>
+                  </tr>
+                </thead>
+                <tbody id="queue-table-body"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="panel actions-panel" aria-labelledby="quick-actions-title">
+            <div class="panel__heading">
+              <div>
+                <p class="panel__eyebrow">Staff tools</p>
+                <h2 id="quick-actions-title">Quick Actions</h2>
+              </div>
+            </div>
+            <div class="actions-list">
+              <button class="action-button action-button--primary" id="call-next-button" type="button">
+                <span aria-hidden="true">▶</span> Call Next Number
+              </button>
+              <button class="action-button" id="update-status-button" type="button">
+                <span aria-hidden="true">✎</span> Update Status
+              </button>
+              <button class="action-button" id="view-reports-button" type="button">
+                <span aria-hidden="true">▥</span> View Reports
+              </button>
+            </div>
+            <div class="status-editor" id="status-editor" hidden>
+              <p>Selected queue: <strong id="selected-queue-number">None</strong></p>
+              <label for="status-select">New status</label>
+              <select id="status-select">
+                <option value="Waiting">Waiting</option>
+                <option value="Serving">Serving</option>
+                <option value="Completed">Completed</option>
+              </select>
+              <button class="save-status-button" id="save-status-button" type="button">Save Status</button>
+            </div>
+            <p class="actions-note">Select a queue from the table, then use Update Status. Call Next completes the current ticket and serves the earliest waiting ticket.</p>
+          </section>
+        </div>
+        </section>
+
+        <section class="page-view" data-view="queue-management" hidden aria-labelledby="queue-management-title">
+          <div class="page-heading">
+            <div>
+              <p class="topbar__eyebrow">Staff workspace</p>
+              <h2 id="queue-management-title">Queue Management</h2>
+            </div>
+            <span class="live-indicator"><span></span> Live queue</span>
+          </div>
+          <section class="panel">
+            <p class="panel__eyebrow">All active and completed tickets</p>
+            <p class="page-help">Select a ticket to make it active, then return to Dashboard to update its status.</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Time In</th>
+                  </tr>
+                </thead>
+                <tbody id="queue-management-table-body"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="page-view" data-view="transactions" hidden aria-labelledby="transactions-title">
+          <div class="page-heading">
+            <div>
+              <p class="topbar__eyebrow">Completed history</p>
+              <h2 id="transactions-title">Transactions</h2>
+            </div>
+            <button class="danger-button" id="clear-history-button" type="button" data-admin-only>Clear Completed History</button>
+          </div>
+          <section class="panel">
+            <p class="page-help">Completed service transactions are retained here. Administrators may clear completed entries only; active tickets and security audit records remain protected.</p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Time In</th>
+                  </tr>
+                </thead>
+                <tbody id="transactions-table-body"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="page-view" data-view="reports" hidden aria-labelledby="reports-title">
+          <div class="page-heading">
+            <div>
+              <p class="topbar__eyebrow">Today at a glance</p>
+              <h2 id="reports-title">Queue Reports</h2>
+            </div>
+          </div>
+          <div class="report-grid">
+            <article class="report-card">
+              <p>Total tickets</p>
+              <strong id="report-total">0</strong>
+            </article>
+            <article class="report-card">
+              <p>Waiting</p>
+              <strong id="report-waiting">0</strong>
+            </article>
+            <article class="report-card">
+              <p>Completed</p>
+              <strong id="report-completed">0</strong>
+            </article>
+          </div>
+          <section class="panel report-services-panel">
+            <div class="panel__heading">
+              <div>
+                <p class="panel__eyebrow">Service breakdown</p>
+                <h2>Tickets by Service</h2>
+              </div>
+            </div>
+            <div class="service-report-list" id="service-report-list"></div>
+          </section>
+        </section>
+
+        <section class="page-view" data-view="settings" hidden aria-labelledby="settings-title">
+          <div class="page-heading">
+            <div>
+              <p class="topbar__eyebrow">Prototype configuration</p>
+              <h2 id="settings-title">Settings</h2>
+            </div>
+          </div>
+          <section class="panel settings-panel">
+            <div class="setting-row">
+              <div><strong>Queue order</strong><span>First-in, first-out across all services</span></div>
+              <span class="setting-value">FIFO</span>
+            </div>
+            <div class="setting-row">
+              <div><strong>Ticket numbering</strong><span>Each service has its own A–E counter</span></div>
+              <span class="setting-value">Enabled</span>
+            </div>
+            <div class="setting-row">
+              <div><strong>Data connection</strong><span>Protected local server and SQLite database</span></div>
+              <span class="setting-value">Secured</span>
+            </div>
+            <div class="user-management" data-admin-only>
+              <div class="panel__heading">
+                <div>
+                  <p class="panel__eyebrow">Administrator only</p>
+                  <h2>Staff Accounts</h2>
+                </div>
+              </div>
+              <form class="create-user-form" id="create-user-form">
+                <label for="new-username">Username</label>
+                <input id="new-username" autocomplete="off" minlength="3" maxlength="32" required>
+                <label for="new-password">Temporary password</label>
+                <input id="new-password" type="password" autocomplete="new-password" minlength="12" maxlength="128" required>
+                <label for="new-role">Role</label>
+                <select id="new-role">
+                  <option value="staff">Staff</option>
+                  <option value="admin">Administrator</option>
+                </select>
+                <button class="save-status-button" id="create-user-button" type="submit">Create Account</button>
+              </form>
+              <p class="user-form-message" id="user-form-message" role="alert" aria-live="polite"></p>
+              <div class="user-list" id="user-list"></div>
+            </div>
+          </section>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <p class="toast" id="toast" role="status" aria-live="polite"></p>
+  <script src="queue.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
