@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barangay San Isidro Queue</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="kiosk">
+    <header class="kiosk__header">
+      <p class="kiosk__label">Barangay Service Portal</p>
+      <h1>Barangay San Isidro</h1>
+      <p class="kiosk__welcome">Good day! Please select the service you need.</p>
+      <a class="display-link" href="display.html">View public queue display</a>
+    </header>
+
+    <section class="services" aria-labelledby="services-title">
+      <h2 id="services-title">Choose a service</h2>
+      <div class="service-grid">
+        <button class="service-button" type="button" data-prefix="A" data-service="Barangay Clearance">
+          <span class="service-button__icon" aria-hidden="true">⌑</span>
+          <span>Barangay Clearance</span>
+        </button>
+        <button class="service-button" type="button" data-prefix="B" data-service="Certificate of Indigency">
+          <span class="service-button__icon" aria-hidden="true">✦</span>
+          <span>Certificate of Indigency</span>
+        </button>
+        <button class="service-button" type="button" data-prefix="C" data-service="Business Permit">
+          <span class="service-button__icon" aria-hidden="true">▣</span>
+          <span>Business Permit</span>
+        </button>
+        <button class="service-button" type="button" data-prefix="D" data-service="Resident Certification">
+          <span class="service-button__icon" aria-hidden="true">✓</span>
+          <span>Resident Certification</span>
+        </button>
+        <button class="service-button service-button--wide" type="button" data-prefix="E" data-service="Other Documents">
+          <span class="service-button__icon" aria-hidden="true">⋯</span>
+          <span>Other Documents</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="ticket" id="ticket" aria-live="polite" aria-labelledby="ticket-title" hidden>
+      <p class="ticket__eyebrow" id="ticket-title">Your queue number</p>
+      <p class="ticket__number" id="queue-number">A-001</p>
+      <p class="ticket__service" id="queue-service">Barangay Clearance</p>
+      <p class="ticket__message" id="queue-message">Please wait for your number to be called.</p>
+    </section>
+  </main>
+
+  <section class="confirmation-modal" id="service-confirmation" role="dialog" aria-modal="true" aria-labelledby="confirmation-title" hidden>
+    <div class="confirmation-modal__card">
+      <p class="ticket__eyebrow">Confirm service</p>
+      <h2 id="confirmation-title">Is this the service you need?</h2>
+      <p class="confirmation-modal__service" id="selected-service-name">Barangay Clearance</p>
+      <p class="confirmation-modal__message">Please confirm before your queue number is issued.</p>
+      <div class="confirmation-modal__actions">
+        <button class="modal-button modal-button--secondary" id="cancel-service" type="button">Go Back</button>
+        <button class="modal-button modal-button--primary" id="confirm-service" type="button">Confirm Service</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="queue.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

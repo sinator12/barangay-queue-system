@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Initial Setup | Barangay San Isidro</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <main class="login-page">
+    <section class="login-card" aria-labelledby="setup-title">
+      <a class="brand" href="index.html" aria-label="Return to resident kiosk">
+        <span class="brand__seal" aria-hidden="true">BSI</span>
+        <span>Barangay San Isidro</span>
+      </a>
+      <p class="eyebrow">One-time protected setup</p>
+      <h1 id="setup-title">Create the first administrator</h1>
+      <p class="intro">This page works only until the first Administrator account is created. Store the password securely.</p>
+
+      <form id="setup-form">
+        <label for="username">Administrator username</label>
+        <input id="username" name="username" autocomplete="username" minlength="3" maxlength="32" required>
+
+        <label for="password">Administrator password</label>
+        <input id="password" name="password" type="password" autocomplete="new-password" minlength="12" maxlength="128" required>
+
+        <label for="confirm-password">Confirm password</label>
+        <input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" minlength="12" maxlength="128" required>
+
+        <p class="form-message" id="form-message" role="alert" aria-live="polite"></p>
+        <button id="setup-button" type="submit">Create Administrator Account</button>
+      </form>
+      <p class="security-note">The server stores only a password hash. It never stores the password itself.</p>
+    </section>
+  </main>
+
+  <script src="queue.js"></script>
+  <script src="setup.js"></script>
+</body>
+</html>

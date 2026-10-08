@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Queue Display | Barangay San Isidro</title>
+  <link rel="stylesheet" href="display.css">
+</head>
+<body>
+  <main class="display-page">
+    <header class="display-header">
+      <a class="display-brand" href="index.html"><span>BSI</span> Barangay San Isidro</a>
+      <p>Digital Queue Number Display</p>
+    </header>
+
+    <section class="now-serving" aria-live="polite" aria-labelledby="now-serving-title">
+      <p class="section-label" id="now-serving-title">Now serving</p>
+      <p class="now-serving__number" id="serving-number">—</p>
+      <p class="now-serving__service" id="serving-service">Waiting for the next ticket</p>
+    </section>
+
+    <section class="next-line" aria-labelledby="next-line-title">
+      <div class="next-line__heading">
+        <p class="section-label" id="next-line-title">Next in line</p>
+        <p class="refresh-note" id="refresh-note">Live updates</p>
+      </div>
+      <div class="next-list" id="next-list">
+        <p class="empty-message">No waiting tickets.</p>
+      </div>
+    </section>
+
+    <p class="display-footer">Please listen for your queue number and proceed to the service counter when called.</p>
+  </main>
+
+  <script src="queue.js"></script>
+  <script src="display.js"></script>
+</body>
+</html>

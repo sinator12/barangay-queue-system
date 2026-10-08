@@ -1,0 +1,14 @@
+{
+  "name": "barangay-queue-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Secure local prototype for the Barangay San Isidro queue system.",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test",
+    "backup": "node backup.js --now"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

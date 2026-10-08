@@ -1,0 +1,4 @@
+{
+  "directory": "data/backups",
+  "retentionDays": 30
+}

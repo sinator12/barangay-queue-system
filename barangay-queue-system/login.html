@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Sign In | Barangay San Isidro</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <main class="login-page">
+    <section class="login-card" aria-labelledby="login-title">
+      <a class="brand" href="index.html" aria-label="Return to resident kiosk">
+        <span class="brand__seal" aria-hidden="true">BSI</span>
+        <span>Barangay San Isidro</span>
+      </a>
+      <p class="eyebrow">Staff access only</p>
+      <h1 id="login-title">Sign in to the queue system</h1>
+      <p class="intro">Use your authorized Administrator or Staff account.</p>
+
+      <form id="login-form">
+        <label for="username">Username</label>
+        <input id="username" name="username" autocomplete="username" minlength="3" maxlength="32" required>
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" minlength="12" required>
+
+        <section id="mfa-setup" class="mfa-panel" aria-live="polite" hidden>
+          <h2>Set up Administrator two-step sign-in</h2>
+          <p>On this server computer, open an authenticator app, add an account, and choose “enter setup key.” Use this key:</p>
+          <code id="mfa-secret" class="mfa-secret"></code>
+          <p>Enter the six-digit code shown by the app below. This key is private—do not share it.</p>
+        </section>
+
+        <label id="mfa-code-label" for="mfa-code" hidden>Authenticator or recovery code</label>
+        <input id="mfa-code" class="mfa-code" name="mfa-code" inputmode="numeric" autocomplete="one-time-code" maxlength="32" hidden>
+
+        <p class="form-message" id="form-message" role="alert" aria-live="polite"></p>
+        <button id="login-button" type="submit">Sign In</button>
+      </form>
+      <section id="recovery-codes-panel" class="mfa-panel recovery-panel" aria-live="polite" hidden>
+        <h2>Save your one-time recovery codes</h2>
+        <p>Keep these somewhere private. Each code works once if you cannot use your authenticator. They will not be shown again.</p>
+        <ul id="recovery-codes" class="recovery-codes"></ul>
+        <button id="recovery-continue" type="button">I saved these codes</button>
+      </section>
+      <p class="security-note">For staff protection, passwords are verified by the local server and are never saved in this browser.</p>
+    </section>
+  </main>
+
+  <script src="queue.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>
